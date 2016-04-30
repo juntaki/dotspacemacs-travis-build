@@ -16,8 +16,8 @@ RUN set -x && \
     make install
 
 # Try twice  https://github.com/syl20bnr/spacemacs/issues/5658
-RUN env SHELL=/bin/bash ~/local/bin/emacs -nw -batch -u root -q -kill && \
-    env SHELL=/bin/bash ~/local/bin/emacs -nw -batch -u root -q -kill
+RUN env SHELL=/bin/bash /opt/emacs/bin/emacs -nw -batch -u root -q -kill && \
+    env SHELL=/bin/bash /opt/emacs/bin/emacs -nw -batch -u root -q -kill
 
 RUN git config --global user.email "me@juntaki.com" && \
     git config --global user.name "juntaki"
