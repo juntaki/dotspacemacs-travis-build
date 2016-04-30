@@ -33,4 +33,4 @@ RUN rm .gitignore && \
 RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh && touch /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
-CMD git push -f -u origin master
+CMD bash -c "cat ~/.ssh/id_rsa.tmp > ~/.ssh/id_rsa; chmod 600 ~/.ssh/id_rsa; git push -f -u origin master"
