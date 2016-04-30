@@ -30,7 +30,7 @@ RUN rm .gitignore && \
     git add . && git commit -m "Initialize my spacemacs" && \
     git remote add origin git@github.com:juntaki/dotemacs.git
 
-RUN mkdir -p /root/.ssh && touch /root/.ssh/known_hosts
+RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh && touch /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 CMD git push -f -u origin master
