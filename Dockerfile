@@ -1,5 +1,5 @@
 FROM ubuntu:trusty
-
+MAINTAINER juntaki
 WORKDIR /root
 
 RUN apt-get upgrade && apt-get update
@@ -22,8 +22,15 @@ RUN env SHELL=/bin/bash ~/local/bin/emacs -nw -batch -u root -q -kill && \
 
 RUN git config --global user.email "me@juntaki.com" && \
     git config --global user.name "juntaki"
-    
-RUN cd ~/.emacs.d && \
-    rm .gitignore && \
+
+WORKDIR /root/.emacs.d
+
+RUN rm .gitignore && \
     git remote rm origin && \
-    git add . && git commit -m "Initialize my spacemacs"
+    git add . && git commit -m "Initialize my spacemacs" && \
+    git remote add origin git@github.com:juntaki/dotemacs.git
+
+RUN mkdir -p /root/.ssh && touch /root/.ssh/known_hosts
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
+
+CMD git push -f -u origin master
