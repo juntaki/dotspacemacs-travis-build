@@ -1,3 +1,5 @@
+services:
+  - docker
+
 script:
-  - echo test1
-  - echo test2
+  - ./run.sh
