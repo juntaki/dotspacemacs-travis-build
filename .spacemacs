@@ -270,6 +270,8 @@ you should place you code here."
     (other-window 1))
   (global-set-key (kbd "C-o") 'other-window-or-split)
 
+  ;; go
+  (setq gofmt-command "goimports")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
