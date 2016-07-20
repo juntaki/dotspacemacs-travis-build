@@ -25,10 +25,7 @@ RUN git config --global user.email "me@juntaki.com" && \
 RUN rm /root/.emacs.d/.gitignore
 RUN rm -rf /root/.emacs.d/.git
 
-RUN cp -r /opt/emacs ./
-
 RUN git init
-RUN git add emacs
 RUN git add .emacs.d
 RUN git add .spacemacs
 RUN git commit -m "spacemacs"
