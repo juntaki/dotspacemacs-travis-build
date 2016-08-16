@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:latest
 MAINTAINER juntaki
 WORKDIR /root
 
