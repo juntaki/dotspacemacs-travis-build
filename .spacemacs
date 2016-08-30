@@ -254,6 +254,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
   ;; for Windows
   (setq powerline-default-separator nil)
+  (spaceline-compile)
 
   ;; Kill with \n
   (setq kill-whole-line t)
