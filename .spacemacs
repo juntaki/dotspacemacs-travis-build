@@ -31,6 +31,9 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     shell-scripts
+     yaml
+     rust
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -117,7 +120,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner nil
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
@@ -298,6 +301,7 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (add-hook 'go-mode-hook (lambda () (helm-gtags-mode)))
+  (add-hook 'c-mode-hook (lambda () (helm-gtags-mode)))
   )
 
 (defun dotspacemacs/user-config ()
@@ -329,6 +333,28 @@ you should place your code here."
 
   ;; go
   (setq gofmt-command "goimports")
+
+  ;; web auto format
+  (eval-after-load 'js2-mode
+    '(add-hook 'js2-mode-hook
+             (lambda ()
+               (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+  (eval-after-load 'json-mode
+    '(add-hook 'json-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+  (eval-after-load 'sgml-mode
+    '(add-hook 'html-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+  (eval-after-load 'web-mode
+    '(add-hook 'web-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+  (eval-after-load 'css-mode
+    '(add-hook 'css-mode-hook
+               (lambda ()
+                 (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
